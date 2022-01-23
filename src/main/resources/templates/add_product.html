@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Shop Application - New Product</title>
+    <th:block th:insert="fragments :: head"></th:block>
+</head>
+<body>
+<div id="content-container">
+    <nav th:replace="fragments :: #navibar"></nav>
+    <div id="main">
+        <div class="container">
+            <div id="main-row" class="row justify-content-center align-items-center">
+                <div id="main-column" class="col-md-6">
+                    <div class="alert alert-warning" th:if="${exceptionHandlerMessage}" th:text="${exceptionHandlerMessage}">Error Msg</div>
+                    <div id="main-box" class="col-md-12">
+                        <form method="POST" th:action="@{/products/add}" th:object="${productForm}" id="productForm" class="form" enctype="multipart/form-data">
+                            <h4 class="text-center">Dodaj nowy produkt</h4><br/>
+                            <div class="form-group">
+                                <label for="productName" class="text-info">Nazwa produktu:</label>
+                                <input type="text" th:field="*{productName}" th:text="${productName}" name="productName" id="productName" class="form-control" required/>
+                                <span class="validationError"
+                                      th:if="${#fields.hasErrors('productName')}">Niepoprawna nazwa produktu</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="productDescription" class="text-info">Opis produktu:</label>
+                                <textarea rows="4" th:field="*{productDescription}" th:text="${productDescription}"
+                                          name="productDescription" id="productDescription" class="form-control" required></textarea>
+                                <span class="validationError"
+                                      th:if="${#fields.hasErrors('productDescription')}">Niepoprawny opis produktu</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="categoryId" class="text-info">Kategoria produktu:</label>
+                                <select name="categoryId" id="categoryId" class="form-control">
+                                    <option th:each="singleCategory : ${allCategories}" th:value="${singleCategory.categoryId}" th:text="${singleCategory.categoryName}"></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="image" class="text-info">Zdjęcie produktu:</label>
+                                <input type="file" accept="image/png, image/jpeg" name="image" id="image" class="form-control-file"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="prize" class="text-info">Cena produktu:</label>
+                                <input type="number" step="0.01" th:field="*{prize}" name="prize" id="prize" class="form-control"/>
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" id="addProductButton" class="btn btn-info btn-md" value="Zapisz"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

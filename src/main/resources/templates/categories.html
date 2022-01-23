@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Shop Application - Categories</title>
+    <th:block th:insert="fragments :: head"></th:block>
+</head>
+<body>
+<div id="content-container">
+    <nav th:replace="fragments :: #navibar"></nav>
+    <div id="main">
+        <div class="container">
+            <div id="main-row" class="row justify-content-center align-items-center">
+                <div id="main-column" class="col-md-6">
+                    <div class="alert alert-warning" th:if="${exceptionHandlerMessage}" th:text="${exceptionHandlerMessage}">Error Msg</div>
+                    <div id="main-box" class="col-md-12">
+                        <table id="main-table">
+                            <thead>
+                                <tr>
+                                    <td>Id</td>
+                                    <td>Nazwa Kategorii</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="category: ${categories}">
+                                    <td th:text="${category.getCategoryId()}"></td>
+                                    <td th:text="${category.getCategoryName()}"></td>
+                                    <td><a th:href="@{/categories/{categoryId}(categoryId = ${category.getCategoryId()})}">Edytuj</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        <div class="text-center">
+                            <a href="/categories/add"><button class="btn-md">Dodaj nową kategorię</button></a>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

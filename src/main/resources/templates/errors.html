@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Shop Application - Error</title>
+    <th:block th:insert="fragments :: head"></th:block>
+</head>
+<body>
+<div id="content-container">
+    <nav th:replace="fragments :: #navibar"></nav>
+    <div id="main">
+        <div class="container">
+            <div id="main-row" class="row justify-content-center align-items-center">
+                <div id="main-column" class="col-md-6">
+                    <div id="main-box" class="col-md-12">
+                        <div class="alert alert-warning" th:if="${accessDeniedMessage}" th:text="${accessDeniedMessage}">Error Msg</div>
+                        <div class="alert alert-warning" th:if="${pageNotFoundMessage}" th:text="${pageNotFoundMessage}">Error Msg</div>
+                        <div class="alert alert-warning" th:if="${defaultErrorMessage}" th:text="${defaultErrorMessage}">Error Msg</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

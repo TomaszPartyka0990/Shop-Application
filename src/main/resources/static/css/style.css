@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #17a2b8;
+  height: 100vh;
+}
+#login .container #login-row #login-column {
+  padding-top: 60px;
+  max-width: 600px;
+}
+#login .container #login-row #login-column #login-box {
+  margin-top: 60px;
+  max-width: 600px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}
+
+
+#register .container #register-row #register-column #register-box {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  max-width: 900px;
+  /*height: 895px;*/
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+#register .container #register-row #register-column #register-box #register-form {
+  padding: 20px;
+}
+#register .container #register-row #register-column #register-box #register-form #register-link {
+  margin-top: -85px;
+}
+
+.validationError{
+  color: #B8860B;
+  font-weight: bold;
+}
+
+#content-container{
+    position: absolute;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: 90%;
+}
+
+nav.main-navigation {
+    position: relative;
+    margin-top: 10px;
+    height: 80px;
+    background-color: #4B0082;
+}
+
+nav.main-navigation ul.nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.nav-list li.nav-list-item {
+    display: inline-block;
+    line-height: 40px;
+    margin-left: 30px;
+    margin-top: 15px;
+}
+
+a.nav-link {
+    text-decoration: none;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    color: #FFFAF0;
+}
+
+a.nav-link:hover {
+    color: #191970;
+    background-color: #FFFAF0;
+}
+
+
+span.nav-list-span {
+    text-decoration: none;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: 500;
+    position: relative;
+    color: #FFFAF0;
+}
+
+
+#main .container #main-row #main-column #main-box {
+  margin-top: 60px;
+  max-width: 1000px;
+  border: 1px solid #9C9C9C;
+  background-color: #EAEAEA;
+}
+
+#main-table{
+    margin: 0 auto;
+    width: 100%;
+}
+
+#main-table thead tr{
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+#main-table tbody tr{
+    text-align: center;
+    vertical-align: middle;
+}
+
+#button-add-div-container{
+    position: relative;
+}
+
+#button-add-div-container div{
+    position: absolute;
+    margin: 0;
+}

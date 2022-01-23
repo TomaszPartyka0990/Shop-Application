@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Shop Application - Categories</title>
+    <th:block th:insert="fragments :: head"></th:block>
+</head>
+<body>
+<div id="content-container">
+    <nav th:replace="fragments :: #navibar"></nav>
+    <div id="main">
+        <div class="container">
+            <div id="main-row" class="row justify-content-center align-items-center">
+                <div id="main-column" class="col-md-6">
+                    <div class="alert alert-warning" th:if="${exceptionHandlerMessage}" th:text="${exceptionHandlerMessage}">Error Msg</div>
+                    <div id="main-box" class="col-md-12">
+                        <form method="POST" th:action="@{/categories/update}" th:object="${categoryForm}" id="categoryForm" class="form">
+                            <h4 class="text-center">Edytuj kategorię</h4><br/>
+                            <div class="form-group">
+                                <label for="categoryId" class="text-info">Id kategorii:</label>
+                                <input type="text" th:field="*{categoryId}" th:value="${categoryId}"
+                                       name="categoryId" id="categoryId" class="form-control" required readonly/>
+                                <label for="categoryName" class="text-info">Nazwa kategorii:</label>
+                                <input type="text" th:field="*{categoryName}" th:text="${categoryName}" name="categoryName" id="categoryName" class="form-control" required/>
+                                <span id='messageFromScript'></span>
+                                <input type="text" th:value="*{categoryName}" name="categoryNameBeforeChanges" id="categoryNameBeforeChanges" hidden/>
+                                <span class="validationError"
+                                      th:if="${#fields.hasErrors('categoryName')}">Niepoprawna nazwa kategorii</span>
+                            </div>
+                            <div class="form-group text-center">
+                                <input type="submit" id="addCategoryButton" class="btn btn-info btn-md" value="Zapisz" disabled/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#categoryName').on('keyup', function(){
+        if ($('#categoryName').val() != $('#categoryNameBeforeChanges').val()){
+            $('#addCategoryButton').prop('disabled', false);
+        } else {
+            $('#addCategoryButton').prop('disabled', true);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shop Application - Register Page</title>
+    <th:block th:insert="fragments :: head"></th:block>
+</head>
+<body>
+<div id="register">
+    <div class="container">
+        <div id="register-row" class="row justify-content-center align-items-center">
+            <div id="register-column" class="col-md-6">
+                <div class="alert alert-warning" th:if="${exceptionHandlerMessage}" th:text="${exceptionHandlerMessage}">Error Msg</div>
+                <div id="register-box" class="col-md-12">
+                    <form method="POST" th:action="@{/register}" th:object="${registrationForm}" id="registrationForm" class="form">
+                        <h3 class="text-center text-info">Rejestracja</h3><br/>
+                        <div class="form-group">
+                            <label for="login" class="text-info">Login (e-mail):</label>
+                            <input type="email" th:field="*{login}" name="login" id="login" class="form-control" required/>
+                            <span class="validationError"
+                                  th:if="${#fields.hasErrors('login')}">Niepoprawny login</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-info">Hasło:</label>
+                            <input type="password" th:field="*{password}" name="password" id="password" class="form-control"
+                                   placeholder="Od 6 do 30 znaków, co najmniej jeden znak specjalny i jedna cyfra" required/>
+                            <span class="validationError"
+                                  th:if="${#fields.hasErrors('password')}">Niepoprawne hasło</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password" class="text-info">Powtórz hasło:</label>
+                            <input type="password" name="confirm_password" id="confirm_password" class="form-control" required/>
+                            <span id='confirm_password_message'></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="text-info">Imię:</label>
+                            <input type="text" th:field="*{name}" name="name" id="name" class="form-control" required/>
+                            <span class="validationError"
+                                  th:if="${#fields.hasErrors('name')}">Niepoprawne imię</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="text-info">Nazwisko:</label>
+                            <input type="text" th:field="*{lastName}" name="lastName" id="lastName" class="form-control" required/>
+                            <span class="validationError"
+                                  th:if="${#fields.hasErrors('lastName')}">Niepoprawne nazwisko</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="country" class="text-info">Kraj:</label>
+                            <input type="text" th:field="*{country}" name="country" id="country" class="form-control" required/>
+                            <span class="validationError"
+                                  th:if="${#fields.hasErrors('country')}">Niepoprawny kraj</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="city" class="text-info">Miasto:</label>
+                            <input type="text" th:field="*{city}" name="city" id="city" class="form-control" required/>
+                            <span class="validationError"
+                                  th:if="${#fields.hasErrors('city')}">Niepoprawne miasto</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="street" class="text-info">Ulica i numer domu:</label>
+                            <input type="text" th:field="*{street}" name="street" id="street" class="form-control" required/>
+                            <span class="validationError"
+                                  th:if="${#fields.hasErrors('street')}">Niepoprawna ulica</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="zipCode" class="text-info">Kod pocztowy:</label>
+                            <input type="text" th:field="*{zipCode}" name="zipCode" id="zipCode" class="form-control" required/>
+                            <span class="validationError"
+                                  th:if="${#fields.hasErrors('zipCode')}">Niepoprawny kod pocztowy</span>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" id="registerButton" class="btn btn-info btn-md" value="Rejestruj"/>
+                        </div>
+                        <div id="register-link" class="text-right">
+                            <a href="/login" class="text-info">Masz już konto ? Zaloguj się</a>
+                            <br/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#password, #confirm_password').on('keyup', function () {
+        if ($('#confirm_password').val() != ""){
+            if ($('#password').val() === $('#confirm_password').val()) {
+                $('#confirm_password_message').html('OK').css('color', 'green');
+                $('#registerButton').prop('disabled', false);
+            } else {
+                $('#confirm_password_message').html('Hasła nie są zgodne').css('color', 'red');
+                $('#registerButton').prop('disabled', true);
+            }
+        } else {
+            $('#registerButton').prop('disabled', true);
+        }
+    });
+</script>
+</body>
+</html>
